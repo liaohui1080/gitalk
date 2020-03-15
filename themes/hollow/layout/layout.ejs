@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <!-- Head tag -->
+  <%- partial('_partial/head') %>
+
+  <body>
+  
+    <!-- 导航菜单 -->
+    <div>
+    <div style="display: flex;justify-self: center; padding: 10px;padding-bottom: 0;">
+      <% for (var i in theme.menu){ %>
+        <div style="width: 20px; text-align: center; color: rgb(218, 104, 104);">|</div>
+        <div><a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a></div>
+     
+      <% } %>
+      <div style="width: 20px; text-align: center; color: rgb(218, 104, 104);">|</div>
+
+    </div>
+    <div style="margin-left: 20px; width: 80%;">
+      <% if (site.tags.length){ %>
+        <div class="widget tagcloud">
+         <span style="font-size: 13px;">标签：</span> <%- tagcloud() %>
+        </div>
+      <% } %>
+    </div>
+  
+  </div>
+
+  
+
+    <!-- Content -->
+    <%- body %>
+    <!-- Scripts -->
+    <%- partial('_partial/scripts') %>
+    <!-- Google Analytics -->
+    <%- partial('_partial/google-analytics') %>
+    <!-- Service Worker -->
+    <%- partial('_partial/service-worker') %>
+  </body>
+</html>

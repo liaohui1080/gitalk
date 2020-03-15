@@ -1,0 +1,45 @@
+<!-- Go Site -->
+<%- partial('_partial/gosite') %>
+
+<!-- 右侧分类菜单 -->
+<div style="
+z-index: 999;
+background-color: rgb(255, 255, 255);
+border-radius: 5px;
+/* box-shadow: 0 0px 8px rgba(0,0,0,0.1); */
+text-align: right;
+
+width: 150px;height: 600px;
+position: fixed;right: -10px; top: 30px; padding: 20px; padding-right: 30px;"> 
+    <% if (site.categories.length){ %>
+        <div>
+          <div>
+          <% site.categories.sort('name').each(function(item){ %>
+            <% if(item.posts.length){ %>
+              <div style="margin-bottom: 10px;">
+                <a style="font-size: 14px;" href="<%- config.root %><%- item.path %>" title="<%= item.name %>"><%= item.name %><span>[<%= item.posts.length %>]</span></a>
+              </div>
+            <% } %>
+          <% }); %>
+          </ul>
+        </div>
+        </div>
+        <% } %>
+</div>
+<!-- /右侧分类菜单 -->
+<!-- Main Content -->
+<section class="intro">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <% page.posts.each(function(item){ %>
+                    <%- partial('_partial/article-index', {item: item}) %>
+                <% }); %>
+            </div>
+        </div>
+        <!-- Pagination -->
+        <%- partial('_partial/pagination') %>
+        <!-- Search -->
+        <%- partial('_partial/search') %>
+    </div>
+</section>
